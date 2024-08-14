@@ -64,6 +64,134 @@ $(document).ready(function () {
 		}	
 	})
 
+
+	/**
+	 * -------------Start Event Handler to Process Sign up ----------------------
+	 */
+	$('#registerForm').submit(function (e) {
+
+		e.preventDefault(); // to prevent the default form submisson
+
+		if($("#registerForm").valid()) {
+			var formData = $(this).serializeArray();
+			var newUser = {};
+			formData.forEach(function (data) {
+				newUser[data.name] = data.value;
+
+			});
+
+			var allUsers = JSON.parse(localStorage.getItem("allUsers")) || [];
+
+			// to check email is exist or not
+
+			var emailExists = allUsers.some(function (user) {
+				return user.email === newUser.email
+
+			});
+
+			if(emailExists) {
+				alert("This email already registered! Please use different Email");
+			} else {
+				allUsers.push(newUser);
+				localStorage.setItem("allUsers", JSON.stringify(allUsers));
+				alert("New User Registration Successful!");
+				$.mobile.changePage("#homePage")
+			}
+		}
+	});
+
+
+	/**
+	 * Validation Rules for Sign up Page
+	 */
+
+	$("#registerForm").validate({
+		focusInvalid: false,
+		onkeyup: false,
+
+		rules: {
+			email: {
+				required: true,
+				email: true
+			},
+			password: {
+				required: true,
+				rangelength: [6, 12]
+			},
+			firstName: {
+				required: true,
+				rangelength: [1, 15],
+				validateName: true
+			},
+			lastName: {
+				required: true,
+				rangelength: [1, 15],
+				validateName: true
+			},
+			phoneNumber: {
+				required: true,
+				mobiletxt: true
+				
+			},
+			address: {
+				required: false,
+				rangelength: [1, 25]
+			},
+			postcode: {
+				required: true,
+				posttxt: true
+			},
+		},
+		/* Validation message */
+		messages: {
+			email: {
+				required: "Please enter your correct email",
+				email: "The email format is incorrect"
+			},
+			password: {
+				required: "Password cannot be empty",
+				rangelength: $.validator.format("Password must be between {6} and {12} characters.")
+			},
+			firstName: {
+				required: "Please enter your first name",
+				rangelength: $.validator.format("First name must be between {1} and {15} characters.")
+			},
+			lastName: {
+				required: "Please enter your last name",
+				rangelength: $.validator.format("Last name must be between {1} and {15} characters.")
+			},
+			phoneNumber: {
+				required: "Please enter your phone number",
+				
+			},
+			address: {
+				rangelength: $.validator.format("Address must be between {1} and {25} characters.")
+			},
+			postcode: {
+				required: "Please enter your postcode"
+			},
+		},
+	});
+
+
+	// Validation methods for custom rules
+	$.validator.addMethod("validateName", function(value, element) {
+		return this.optional(element) || /^[a-zA-Z]+$/.test(value);
+	}, "Name must contain only letters");
+
+	$.validator.addMethod("mobiletxt", function(value, element) {
+		return this.optional(element) || /^[0-9]{10}$/.test(value);
+	}, "Please enter a valid phone number");
+
+	$.validator.addMethod("posttxt", function(value, element) {
+		return this.optional(element) || /^[0-9]{4}$/.test(value);
+	}, "Please enter a valid postcode");
+
+
+	/**
+	 * End of Sign up process
+	 */
+
 	
 
 	 $("#loginForm").validate({// JQuery validation plugin
