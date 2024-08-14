@@ -53,7 +53,72 @@
 		</div>
 	</div>
 
-	<!------------------------Sign up page------------------------------>
+	<!------------------------Sign up page Start------------------------------>
+
+	<div data-role="page" id="registerPage">
+
+		<!------Header of the Register Page----->
+		<div data-role="header" data-theme="d" data-position="fixed">
+			<h1>User Registration </h1>
+		</div>
+
+		<!-----Register Page main content----->
+
+		<div data-role="content">
+			<div class="wrap register">
+				<form id="registerForm" method="post" action="">
+					<div>
+						<input type="email" id="email" name="email" placeholder="Enter Your Email" required>
+					</div>
+					<div>
+						<input type="password" id="password" name="password" placeholder="Enter Your Password" required>
+					</div>
+					<div>
+						<input type="text" id="firstName" name="firstName" placeholder="Enter Your First Name" required>
+					</div>
+					<div>
+						<input type="text" id="lastName" name="lastName" placeholder="Enter Your Last Name" required>
+					</div>
+					<div>
+						<label for="state">Pls Select State:</label>
+						<select name="state" id="state">
+							<option value="ACT">ACT</option>
+							<option value="VIC">VIC</option>
+							<option value="NSW">NSW</option>
+							<option value="QLD">QLD</option>
+							<option value="SA">SA</option>
+							<option value="TAS">TAS</option>
+						</select>
+					</div>
+					<div>
+						<input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter Your Phone Number" required>
+					</div>
+					<div>
+						<input type="text" id="address" name="address" placeholder="Enter Your Address" >
+					</div>
+					<div>
+						<input type="text" name="postcode" id="postcode" placeholder="Enter Your PostCode">
+					</div>
+					<div>
+						<button type="submit" id="submitButton" class="ui-btn ui-shadow ui-corner-all ui-btn-d">Submit</button>
+					</div>
+					<div>
+						<button type="reset" id="clearButton" class="ui-btn ui-shadow ui-corner-all">Clear</button>
+					</div>
+				</form>
+
+			</div>
+
+		</div>
+
+		<!--Footer for Sign up-->
+		<div data-role="footer" data-theme="d" data-position="fixed" class="footer" style="text-align:center;">
+			<p>Copyright © Gift Delivery 2024</p>
+		</div>
+
+	</div>
+
+	<!-------------------------Sign up page End------------------------------->
 	
 
 
@@ -75,6 +140,34 @@
 							<img src="img/flower.png" />
 							<div>
 								<h3 class = "fcolor">Order a gift item</h3>		
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div data-role="content">
+			<div class="wrap pb">
+				<ul class="ilist" id="menuList">
+					<li>
+						<a href="#selectPage">
+							<img src="img/order.png" />
+							<div>
+								<h3 class = "fcolor">See past orders</h3>		
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div data-role="content">
+			<div class="wrap pb">
+				<ul class="ilist" id="menuList">
+					<li>
+						<a href="#selectPage">
+							<img src="img/delete.png" />
+							<div>
+								<h3 class = "fcolor">Delete orders</h3>		
 							</div>
 						</a>
 					</li>
